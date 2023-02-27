@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
+    <ClInclude Include="AlienLaser.h" />
     <ClInclude Include="ConsoleRenderer.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="PlayerLaser.h" />
+    <ClInclude Include="PlayerShip.h" />
+    <ClInclude Include="PlayField.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
