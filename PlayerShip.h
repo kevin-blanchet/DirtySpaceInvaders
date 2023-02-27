@@ -1,7 +1,6 @@
 #pragma once
 #include <cstring>
 
-#include "ConsoleRenderer.h"
 #include "GameObject.h"
 #include "PlayerLaser.h"
 

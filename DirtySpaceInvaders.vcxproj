@@ -147,6 +147,7 @@
     <ClInclude Include="PlayerLaser.h" />
     <ClInclude Include="PlayerShip.h" />
     <ClInclude Include="PlayField.h" />
+    <ClInclude Include="RaiderSprites.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>

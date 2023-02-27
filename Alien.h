@@ -2,7 +2,6 @@
 #include <cstring>
 
 #include "AlienLaser.h"
-#include "ConsoleRenderer.h"
 #include "GameObject.h"
 #include "Random.h"
 

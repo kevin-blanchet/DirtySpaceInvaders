@@ -2,7 +2,6 @@
 
 #include <thread>
 #include <memory>
-#include <string>
 
 #include "Alien.h"
 #include "PlayerShip.h"

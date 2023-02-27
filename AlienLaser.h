@@ -2,7 +2,6 @@
 
 #include <cstring>
 
-#include "ConsoleRenderer.h"
 #include "GameObject.h"
 
 
