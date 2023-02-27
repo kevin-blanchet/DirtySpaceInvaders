@@ -5,6 +5,8 @@
 
 #include <Windows.h>
 
+#include "RaiderSprites.h"
+
 void setCursorPosition(int x, int y)
 {
 	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
