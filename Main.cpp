@@ -20,9 +20,21 @@ public:
 class RndInput : public Input
 {
 public:
-	virtual bool Left() { floatRand keyRate(0, 1); return (keyRate(rGen) < 0.3f); }
-	virtual bool Right() { floatRand keyRate(0, 1); return (keyRate(rGen) < 0.4f); };
-	virtual bool Fire() { floatRand keyRate(0, 1); return (keyRate(rGen) < 0.5f); };
+	virtual bool Left()
+	{
+		floatRand keyRate(0, 1);
+		return (keyRate(rGen) < 0.3f);
+	}
+	virtual bool Right()
+	{
+		floatRand keyRate(0, 1);
+		return (keyRate(rGen) < 0.4f);
+	}
+	virtual bool Fire()
+	{
+		floatRand keyRate(0, 1);
+		return (keyRate(rGen) < 0.5f);
+	}
 };
 
 class PlayField;
@@ -34,8 +46,14 @@ public:
 	Vector2D pos;
 	unsigned char sprite;
 
-	virtual void Update(PlayField& world) {};
-	bool DecreaseHealth() { return true; };
+	virtual void Update(PlayField& world)
+	{
+		
+	}
+	bool DecreaseHealth()
+	{
+		return true;
+	}
 };
 
 class PlayField
@@ -44,15 +62,22 @@ private:
 	std::vector<GameObject*> gameObjects;
 
 public:
-	Input* cotrollerInput;
+	Input* controllerInput;
 	Vector2D bounds;
 
 	// Number of available active laser slots for aliens and player
 	int AlienLasers = 10;
 	int PlayerLasers = 4;
 
-	PlayField(Vector2D iBounds) : bounds(iBounds) {};
-	const std::vector<GameObject*>& GameObjects() { return gameObjects; }
+	PlayField(Vector2D iBounds) : bounds(iBounds)
+	{
+		
+	}
+
+	const std::vector<GameObject*>& GameObjects()
+	{
+		return gameObjects;
+	}
 
 	void Update()
 	{
@@ -67,29 +92,41 @@ public:
 	{
 		auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](GameObject* in) { return (strcmp(in->m_objType, "playerShip") == 0); });
 		if (it != gameObjects.end())
+		{
 			return (*it);
+		}
 		else
+		{
 			return nullptr;
+		}
 	}
 
 	void SpawnLaser(GameObject* newObj)
 	{
-		if (strcmp(newObj->m_objType, "alienLaser") == 0)
+		if ( strcmp(newObj->m_objType, "alienLaser") == 0 )
+		{
 			AlienLasers--;
+		}
 
-		else if (strcmp(newObj->m_objType, "PlayerLaser") == 0)
+		else if ( strcmp(newObj->m_objType, "PlayerLaser") == 0 )
+		{
 			PlayerLasers--;
+		}
 
 		AddObject(newObj);
 	}
 
 	void DespawnLaser(GameObject* newObj)
 	{
-		if (strcmp(newObj->m_objType, "AlienLaser") == 0)
+		if ( strcmp(newObj->m_objType, "AlienLaser") == 0 )
+		{
 			AlienLasers++;
+		}
 
-		else if (strcmp(newObj->m_objType, "PlayerLaser") == 0)
+		else if ( strcmp(newObj->m_objType, "PlayerLaser") == 0 )
+		{
 			PlayerLasers++;
+		}
 
 		RemoveObject(newObj);
 	}
@@ -110,8 +147,16 @@ public:
 class AlienLaser : public GameObject
 {
 public:
-	AlienLaser() { m_objType = new char[64]; strcpy(m_objType, "AlienLaser"); sprite = RS_AlienLaser; }
-	~AlienLaser() { delete[] m_objType; }
+	AlienLaser()
+	{
+		m_objType = new char[64];
+		strcpy(m_objType, "AlienLaser");
+		sprite = RS_AlienLaser;
+	}
+	~AlienLaser()
+	{
+		delete[] m_objType;
+	}
 
 	void Update(PlayField& world)
 	{
@@ -139,8 +184,16 @@ public:
 class PlayerLaser : public GameObject
 {
 public:
-	PlayerLaser() { m_objType = new char[64]; strcpy(m_objType, "PlayerLaser"); sprite = RS_PlayerLaser; }
-	~PlayerLaser() { delete[] m_objType; }
+	PlayerLaser()
+	{
+		m_objType = new char[64];
+		strcpy(m_objType, "PlayerLaser");
+		sprite = RS_PlayerLaser;
+	}
+	~PlayerLaser()
+	{
+		delete[] m_objType;
+	}
 
 	void Update(PlayField& world)
 	{
@@ -162,8 +215,16 @@ public:
 class Alien : public GameObject
 {
 public:
-	Alien() { m_objType = new char[64]; strcpy(m_objType, "AlienShip"); sprite = RS_Alien; }
-	~Alien() { delete m_objType; }
+	Alien()
+	{
+		m_objType = new char[64];
+		strcpy(m_objType, "AlienShip");
+		sprite = RS_Alien;
+	}
+	~Alien()
+	{
+		delete m_objType;
+	}
 
 private:
 	float health = 1.f;
@@ -171,7 +232,11 @@ private:
 	float direction = 1.f;
 	float velocity = 0.5f;
 
-	bool DecreaseHealth() { health -= 1.f; return health <= 0; }
+	bool DecreaseHealth()
+	{
+		health -= 1.f;
+		return health <= 0;
+	}
 
 	void Update(PlayField& world)
 	{
@@ -208,17 +273,29 @@ private:
 class PlayerShip : public GameObject
 {
 public:
-	PlayerShip() { m_objType = new char[64]; strcpy(m_objType, "PlayerShip"); sprite = RS_Player; }
-	~PlayerShip() { delete m_objType; }
+	PlayerShip()
+	{
+		m_objType = new char[64];
+		strcpy(m_objType, "PlayerShip");
+		sprite = RS_Player;
+	}
+	~PlayerShip()
+	{
+		delete m_objType;
+	}
 
 	void Update(PlayField& world)
 	{
-		if (world.cotrollerInput->Left())
+		if (world.controllerInput->Left())
+		{
 			pos.x -= 1;
-		else if (world.cotrollerInput->Right())
+		}
+		else if (world.controllerInput->Right())
+		{
 			pos.x += 1;
+		}
 
-		if (world.cotrollerInput->Fire() && world.PlayerLasers > 0)
+		if (world.controllerInput->Fire() && world.PlayerLasers > 0)
 		{
 			//Spawn laser
 			GameObject& newLaser = *(new PlayerLaser);
