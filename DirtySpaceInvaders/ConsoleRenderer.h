@@ -30,7 +30,8 @@ private:
 	} disp[2]; // double buffer our canvas for no flicker display
 
 	int canvasSize = 0;
-	unsigned char* CurCanvas(int x, int y) { return &disp[curIdx % 2].canvas[x + (int)renderBounds.x * y]; }
+
+	unsigned char* CurCanvas(int x, int y);
 
 	// Fills whole canvas array with sprite
 	void FillCanvas(unsigned char sprite);

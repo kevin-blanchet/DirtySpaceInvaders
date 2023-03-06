@@ -48,6 +48,11 @@ void Renderer::Update(const RenderItemList& RenderList)
 	DrawCanvas();
 }
 
+unsigned char* Renderer::CurCanvas(int x, int y)
+{
+	return &disp[curIdx % 2].canvas[x + (int)renderBounds.x * y];
+}
+
 void Renderer::FillCanvas(unsigned char sprite)
 {
 	for (int i = 0; i < canvasSize; i++)
