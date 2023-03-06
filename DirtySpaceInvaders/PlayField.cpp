@@ -8,7 +8,6 @@ void PlayField::DeleteObject(GameObject* newObj)
 {
 	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [&](GameObject* in) { return (in == newObj); });
 	gameObjects.erase(it);
-	delete* it;
 }
 
 void PlayField::CreateObject(GameObject* newObj)
