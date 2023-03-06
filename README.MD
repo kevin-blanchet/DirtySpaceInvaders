@@ -4,3 +4,4 @@
 
 * Moved classes in header files
 * Moved function definitions in source files
+* set rGen to static
