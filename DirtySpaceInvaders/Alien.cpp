@@ -39,9 +39,11 @@ void Alien::Update(PlayField& world)
 	{
 		// kill player
 		GameObject* player = world.GetPlayerObject();
-		if (pos.IntCmp(player->pos))
-		{
-			world.RemoveObject(player);
+		if (player) {
+			if (pos.IntCmp(player->pos))
+			{
+				world.RemoveObject(player);
+			}
 		}
 	}
 
