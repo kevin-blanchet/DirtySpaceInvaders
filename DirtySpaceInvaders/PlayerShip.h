@@ -9,7 +9,7 @@ class PlayerShip : public GameObject
 public:
 	PlayerShip();
 	
-	~PlayerShip();
+	~PlayerShip() override;
 
-	void Update(PlayField& world);
+	void Update(PlayField& world) override;
 };
