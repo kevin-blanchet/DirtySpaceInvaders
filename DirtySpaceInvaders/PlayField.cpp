@@ -47,7 +47,7 @@ void PlayField::Update()
 
 GameObject* PlayField::GetPlayerObject()
 {
-	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](GameObject* in) { return (strcmp(in->m_objType, "playerShip") == 0); });
+	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](GameObject* in) { return (strcmp(in->m_objType, "PlayerShip") == 0); });
 	if (it != gameObjects.end())
 	{
 		return (*it);
