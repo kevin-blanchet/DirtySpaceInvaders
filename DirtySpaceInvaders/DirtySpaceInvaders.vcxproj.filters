@@ -68,5 +68,8 @@
     <ClCompile Include="Alien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AlienLaser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

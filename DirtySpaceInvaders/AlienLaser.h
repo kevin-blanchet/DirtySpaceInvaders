@@ -1,43 +1,14 @@
 #pragma once
 
-#include <cstring>
-
 #include "GameObject.h"
 
+class PlayField;
 
 class AlienLaser : public GameObject
 {
 public:
-	AlienLaser()
-	{
-		m_objType = new char[64];
-		strcpy(m_objType, "AlienLaser");
-		sprite = RS_AlienLaser;
-	}
-	~AlienLaser()
-	{
-		delete[] m_objType;
-	}
+	AlienLaser();
+	~AlienLaser();
 
-	void Update(PlayField& world)
-	{
-		bool deleted = false;
-		pos.y += 1.f;
-		if (pos.y > world.bounds.y)
-		{
-			deleted = true;
-		}
-
-		GameObject* player = world.GetPlayerObject();
-		if (pos.IntCmp(player->pos))
-		{
-			deleted = true;
-			world.RemoveObject(player);
-		}
-
-		if (deleted)
-		{
-			world.DespawnLaser((GameObject*)this);
-		}
-	}
+	void Update(PlayField& world);
 };
