@@ -13,7 +13,6 @@ AlienLaser::AlienLaser()
 
 AlienLaser::~AlienLaser()
 {
-	delete[] m_objType;
 }
 
 void AlienLaser::Update(PlayField& world)

@@ -15,7 +15,6 @@ Alien::Alien()
 
 Alien::~Alien()
 {
-	delete m_objType;
 }
 
 bool Alien::DecreaseHealth()

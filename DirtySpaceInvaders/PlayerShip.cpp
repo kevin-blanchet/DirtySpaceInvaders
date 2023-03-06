@@ -15,7 +15,6 @@ PlayerShip::PlayerShip()
 
 PlayerShip::~PlayerShip()
 {
-	delete m_objType;
 }
 
 void PlayerShip::Update(PlayField& world)
