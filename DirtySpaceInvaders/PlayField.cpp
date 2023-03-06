@@ -1,9 +1,10 @@
 #include "PlayField.h"
 
 #include "GameObject.h"
+#include "Input.h"
 #include "Vector.h"
 
-PlayField::PlayField(Vector2D iBounds) : bounds(iBounds)
+PlayField::PlayField(const Vector2D& iBounds) : controllerInput(new RndInput), bounds(iBounds)
 {}
 
 const std::vector<GameObject*>& PlayField::GameObjects()

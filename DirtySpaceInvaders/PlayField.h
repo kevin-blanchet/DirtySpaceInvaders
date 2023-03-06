@@ -18,7 +18,7 @@ public:
 	int AlienLasers = 10;
 	int PlayerLasers = 4;
 
-	PlayField(Vector2D iBounds);
+	PlayField(const Vector2D& iBounds);
 
 	const std::vector<GameObject*>& GameObjects();
 
