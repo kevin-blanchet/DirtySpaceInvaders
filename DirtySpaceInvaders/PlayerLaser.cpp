@@ -28,6 +28,5 @@ void PlayerLaser::Update(PlayField& world)
 	if (deleted)
 	{
 		world.DespawnLaser(this);
-		delete this;
 	}
 }

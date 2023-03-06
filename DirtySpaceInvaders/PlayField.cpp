@@ -4,6 +4,18 @@
 #include "Input.h"
 #include "Vector.h"
 
+void PlayField::DeleteObject(GameObject* newObj)
+{
+	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [&](GameObject* in) { return (in == newObj); });
+	gameObjects.erase(it);
+	delete* it;
+}
+
+void PlayField::CreateObject(GameObject* newObj)
+{
+	gameObjects.push_back(newObj);
+}
+
 PlayField::PlayField(const Vector2D& iBounds) : controllerInput(new RndInput), bounds(iBounds)
 {}
 
@@ -15,10 +27,22 @@ const std::vector<GameObject*>& PlayField::GameObjects()
 void PlayField::Update()
 {
 	// Update list of active objects in the world
-	for (auto it : gameObjects)
+	for (const auto it : gameObjects)
 	{
 		it->Update(*this);
 	}
+
+	for (const auto it : awaitingDeletion)
+	{
+		DeleteObject(it);
+	}
+	awaitingDeletion.clear();
+
+	for (const auto it : awaitingAddition)
+	{
+		CreateObject(it);
+	}
+	awaitingDeletion.clear();
 }
 
 GameObject* PlayField::GetPlayerObject()
@@ -66,12 +90,10 @@ void PlayField::DespawnLaser(GameObject* newObj)
 
 void PlayField::AddObject(GameObject* newObj)
 {
-	gameObjects.push_back(newObj);
+	awaitingAddition.push_back(newObj);
 }
 
 void PlayField::RemoveObject(GameObject* newObj)
 {
-	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [&](GameObject* in) { return (in == newObj); });
-	delete* it;
-	gameObjects.erase(it);
+	awaitingDeletion.push_back(newObj);
 }

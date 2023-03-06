@@ -9,6 +9,11 @@ class PlayField
 {
 private:
 	std::vector<GameObject*> gameObjects;
+	std::vector<GameObject*> awaitingDeletion;
+	std::vector<GameObject*> awaitingAddition;
+
+	void DeleteObject(GameObject* newObj);
+	void CreateObject(GameObject* newObj);
 
 public:
 	Input* controllerInput;
