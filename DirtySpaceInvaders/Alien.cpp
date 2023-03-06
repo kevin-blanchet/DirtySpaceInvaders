@@ -6,9 +6,8 @@
 #include "PlayField.h"
 #include "Random.h"
 
-Alien::Alien()
+Alien::Alien(): GameObject()
 {
-	m_objType = new char[64];
 	strcpy(m_objType, "AlienShip");
 	sprite = RS_Alien;
 }

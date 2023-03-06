@@ -4,7 +4,7 @@
 
 #include "PlayField.h"
 
-PlayerLaser::PlayerLaser()
+PlayerLaser::PlayerLaser(): GameObject()
 {
 	strcpy(m_objType, "PlayerLaser");
 	sprite = RS_PlayerLaser;

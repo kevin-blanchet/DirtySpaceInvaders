@@ -11,6 +11,8 @@ public:
 	Vector2D pos;
 	RaiderSprites sprite;
 
+	GameObject();
+
 	virtual ~GameObject();
 
 	virtual void Update(PlayField& world);

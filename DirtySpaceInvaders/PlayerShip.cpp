@@ -6,9 +6,8 @@
 #include "PlayerLaser.h"
 #include "PlayField.h"
 
-PlayerShip::PlayerShip()
+PlayerShip::PlayerShip(): GameObject()
 {
-	m_objType = new char[64];
 	strcpy(m_objType, "PlayerShip");
 	sprite = RS_Player;
 }

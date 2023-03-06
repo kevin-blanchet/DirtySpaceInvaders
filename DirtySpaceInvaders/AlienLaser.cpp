@@ -4,9 +4,8 @@
 
 #include "PlayField.h"
 
-AlienLaser::AlienLaser()
+AlienLaser::AlienLaser(): GameObject()
 {
-	m_objType = new char[64];
 	strcpy(m_objType, "AlienLaser");
 	sprite = RS_AlienLaser;
 }
