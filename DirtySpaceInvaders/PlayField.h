@@ -9,6 +9,11 @@ class PlayField
 {
 private:
 	std::vector<GameObject*> gameObjects;
+	std::vector<GameObject*> awaitingDeletion;
+	std::vector<GameObject*> awaitingAddition;
+
+	void DeleteObject(GameObject* newObj);
+	void CreateObject(GameObject* newObj);
 
 public:
 	Input* controllerInput;
@@ -18,7 +23,7 @@ public:
 	int AlienLasers = 10;
 	int PlayerLasers = 4;
 
-	PlayField(Vector2D iBounds);
+	PlayField(const Vector2D& iBounds);
 
 	const std::vector<GameObject*>& GameObjects();
 

@@ -11,12 +11,11 @@ public:
 	Vector2D pos;
 	RaiderSprites sprite;
 
-	virtual void Update(PlayField& world)
-	{
+	GameObject();
 
-	}
-	bool DecreaseHealth()
-	{
-		return true;
-	}
+	virtual ~GameObject();
+
+	virtual void Update(PlayField& world);
+
+	virtual bool DecreaseHealth();
 };

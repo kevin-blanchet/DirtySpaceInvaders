@@ -6,16 +6,14 @@
 #include "PlayField.h"
 #include "Random.h"
 
-Alien::Alien()
+Alien::Alien(): GameObject()
 {
-	m_objType = new char[64];
 	strcpy(m_objType, "AlienShip");
 	sprite = RS_Alien;
 }
 
 Alien::~Alien()
 {
-	delete m_objType;
 }
 
 bool Alien::DecreaseHealth()
@@ -39,9 +37,11 @@ void Alien::Update(PlayField& world)
 	{
 		// kill player
 		GameObject* player = world.GetPlayerObject();
-		if (pos.IntCmp(player->pos))
-		{
-			world.RemoveObject(player);
+		if (player) {
+			if (pos.IntCmp(player->pos))
+			{
+				world.RemoveObject(player);
+			}
 		}
 	}
 

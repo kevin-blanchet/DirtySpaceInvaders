@@ -4,16 +4,14 @@
 
 #include "PlayField.h"
 
-AlienLaser::AlienLaser()
+AlienLaser::AlienLaser(): GameObject()
 {
-	m_objType = new char[64];
 	strcpy(m_objType, "AlienLaser");
 	sprite = RS_AlienLaser;
 }
 
 AlienLaser::~AlienLaser()
 {
-	delete[] m_objType;
 }
 
 void AlienLaser::Update(PlayField& world)
@@ -26,10 +24,12 @@ void AlienLaser::Update(PlayField& world)
 	}
 
 	GameObject* player = world.GetPlayerObject();
-	if (pos.IntCmp(player->pos))
-	{
-		deleted = true;
-		world.RemoveObject(player);
+	if (player) {
+		if (pos.IntCmp(player->pos))
+		{
+			deleted = true;
+			world.RemoveObject(player);
+		}
 	}
 
 	if (deleted)

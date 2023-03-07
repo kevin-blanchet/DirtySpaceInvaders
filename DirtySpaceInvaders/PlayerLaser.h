@@ -8,7 +8,7 @@ class PlayerLaser : public GameObject
 {
 public:
 	PlayerLaser();
-	~PlayerLaser();
+	~PlayerLaser() override;
 
-	void Update(PlayField& world);
+	void Update(PlayField& world) override;
 };

@@ -8,7 +8,7 @@ class Alien : public GameObject
 {
 public:
 	Alien();
-	~Alien();
+	~Alien() override;
 
 private:
 	float health = 1.f;
@@ -16,7 +16,7 @@ private:
 	float direction = 1.f;
 	float velocity = 0.5f;
 
-	bool DecreaseHealth();
+	bool DecreaseHealth() override;
 
-	void Update(PlayField& world);
+	void Update(PlayField& world) override;
 };

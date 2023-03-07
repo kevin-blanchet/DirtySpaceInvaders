@@ -1,9 +1,21 @@
 #include "PlayField.h"
 
 #include "GameObject.h"
+#include "Input.h"
 #include "Vector.h"
 
-PlayField::PlayField(Vector2D iBounds) : bounds(iBounds)
+void PlayField::DeleteObject(GameObject* newObj)
+{
+	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [&](GameObject* in) { return (in == newObj); });
+	gameObjects.erase(it);
+}
+
+void PlayField::CreateObject(GameObject* newObj)
+{
+	gameObjects.push_back(newObj);
+}
+
+PlayField::PlayField(const Vector2D& iBounds) : controllerInput(new RndInput), bounds(iBounds)
 {}
 
 const std::vector<GameObject*>& PlayField::GameObjects()
@@ -14,15 +26,27 @@ const std::vector<GameObject*>& PlayField::GameObjects()
 void PlayField::Update()
 {
 	// Update list of active objects in the world
-	for (auto it : gameObjects)
+	for (const auto it : gameObjects)
 	{
 		it->Update(*this);
 	}
+
+	for (const auto it : awaitingDeletion)
+	{
+		DeleteObject(it);
+	}
+	awaitingDeletion.clear();
+
+	for (const auto it : awaitingAddition)
+	{
+		CreateObject(it);
+	}
+	awaitingDeletion.clear();
 }
 
 GameObject* PlayField::GetPlayerObject()
 {
-	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](GameObject* in) { return (strcmp(in->m_objType, "playerShip") == 0); });
+	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](GameObject* in) { return (strcmp(in->m_objType, "PlayerShip") == 0); });
 	if (it != gameObjects.end())
 	{
 		return (*it);
@@ -65,12 +89,10 @@ void PlayField::DespawnLaser(GameObject* newObj)
 
 void PlayField::AddObject(GameObject* newObj)
 {
-	gameObjects.push_back(newObj);
+	awaitingAddition.push_back(newObj);
 }
 
 void PlayField::RemoveObject(GameObject* newObj)
 {
-	auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [&](GameObject* in) { return (in == newObj); });
-	delete* it;
-	gameObjects.erase(it);
+	awaitingDeletion.push_back(newObj);
 }
