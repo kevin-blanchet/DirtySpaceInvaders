@@ -12,7 +12,17 @@ AlienLaser::AlienLaser(): Laser()
 
 void AlienLaser::Update(PlayField& world)
 {
+	Laser::Update(world);
+}
+
+void AlienLaser::Move(PlayField& world)
+{
 	Laser::Move(world);
+}
+
+void AlienLaser::CollisionCheck(PlayField& world)
+{
+	Laser::CollisionCheck(world);
 
 	GameObject* player = world.GetPlayerObject();
 	if (player) {
@@ -22,6 +32,4 @@ void AlienLaser::Update(PlayField& world)
 			world.RemoveObject(player);
 		}
 	}
-
-	Laser::Update(world);
 }

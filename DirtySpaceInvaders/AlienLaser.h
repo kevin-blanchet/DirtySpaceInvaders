@@ -11,4 +11,8 @@ public:
 	~AlienLaser() override = default;
 
 	void Update(PlayField& world) override;
+
+	void Move(PlayField& world) override;
+
+	void CollisionCheck(PlayField& world) override;
 };

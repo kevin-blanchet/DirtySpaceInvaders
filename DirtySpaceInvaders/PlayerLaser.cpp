@@ -13,7 +13,15 @@ PlayerLaser::PlayerLaser(): Laser()
 
 void PlayerLaser::Update(PlayField& world)
 {
-	Laser::Move(world);
-
 	Laser::Update(world);
+}
+
+void PlayerLaser::Move(PlayField& world)
+{
+	Laser::Move(world);
+}
+
+void PlayerLaser::CollisionCheck(PlayField& world)
+{
+	Laser::CollisionCheck(world);
 }

@@ -10,6 +10,7 @@ public:
     void Update(PlayField& world) override;
 
     virtual void Move(PlayField& world);
+    virtual void CollisionCheck(PlayField& world);
 
 protected:
     bool m_deleted;
