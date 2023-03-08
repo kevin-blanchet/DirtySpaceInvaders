@@ -20,8 +20,8 @@ public:
 	Vector2D bounds;
 
 	// Number of available active laser slots for aliens and player
-	int AlienLasers = 10;
-	int PlayerLasers = 4;
+	int AlienLasers = 100;
+	int PlayerLasers = 40;
 
 	PlayField(const Vector2D& iBounds);
 
@@ -30,6 +30,8 @@ public:
 	void Update();
 
 	GameObject* GetPlayerObject();
+
+	std::vector<GameObject*> GetAllAliens();
 
 	void SpawnLaser(GameObject* newObj);
 

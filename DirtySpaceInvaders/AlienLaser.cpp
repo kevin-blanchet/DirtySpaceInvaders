@@ -4,36 +4,32 @@
 
 #include "PlayField.h"
 
-AlienLaser::AlienLaser(): GameObject()
+AlienLaser::AlienLaser(): Laser()
 {
 	strcpy(m_objType, "AlienLaser");
 	sprite = RS_AlienLaser;
 }
 
-AlienLaser::~AlienLaser()
-{
-}
-
 void AlienLaser::Update(PlayField& world)
 {
-	bool deleted = false;
-	pos.y += 1.f;
-	if (pos.y > world.bounds.y)
-	{
-		deleted = true;
-	}
+	Laser::Update(world);
+}
+
+void AlienLaser::Move(PlayField& world)
+{
+	Laser::Move(world);
+}
+
+void AlienLaser::CollisionCheck(PlayField& world)
+{
+	Laser::CollisionCheck(world);
 
 	GameObject* player = world.GetPlayerObject();
 	if (player) {
 		if (pos.IntCmp(player->pos))
 		{
-			deleted = true;
+			m_deleted = true;
 			world.RemoveObject(player);
 		}
-	}
-
-	if (deleted)
-	{
-		world.DespawnLaser((GameObject*)this);
 	}
 }

@@ -41,7 +41,7 @@ void PlayField::Update()
 	{
 		CreateObject(it);
 	}
-	awaitingDeletion.clear();
+	awaitingAddition.clear();
 }
 
 GameObject* PlayField::GetPlayerObject()
@@ -57,9 +57,22 @@ GameObject* PlayField::GetPlayerObject()
 	}
 }
 
+std::vector<GameObject*> PlayField::GetAllAliens()
+{
+	std::vector<GameObject*> ret;
+	for (auto object : gameObjects)
+	{
+		if (strcmp(object->m_objType, "AlienShip") == 0)
+		{
+			ret.push_back(object);
+		}
+	}
+	return ret;
+}
+
 void PlayField::SpawnLaser(GameObject* newObj)
 {
-	if (strcmp(newObj->m_objType, "alienLaser") == 0)
+	if (strcmp(newObj->m_objType, "AlienLaser") == 0)
 	{
 		AlienLasers--;
 	}

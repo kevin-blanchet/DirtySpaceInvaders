@@ -4,27 +4,37 @@
 
 #include "PlayField.h"
 
-PlayerLaser::PlayerLaser(): GameObject()
+PlayerLaser::PlayerLaser(): Laser()
 {
+	m_direction = -1.f;
 	strcpy(m_objType, "PlayerLaser");
 	sprite = RS_PlayerLaser;
 }
 
-PlayerLaser::~PlayerLaser()
-{
-}
-
 void PlayerLaser::Update(PlayField& world)
 {
-	bool deleted = false;
-	pos.y -= 1.f;
-	if (pos.y < 0)
-	{
-		deleted = true;
-	}
+	Laser::Update(world);
+}
 
-	if (deleted)
-	{
-		world.DespawnLaser(this);
+void PlayerLaser::Move(PlayField& world)
+{
+	Laser::Move(world);
+}
+
+void PlayerLaser::CollisionCheck(PlayField& world)
+{
+	Laser::CollisionCheck(world);
+
+	std::vector<GameObject*> aliens = world.GetAllAliens();
+
+	if (!aliens.empty()) {
+		for (auto alien : aliens)
+		{
+			if (pos.IntCmp(alien->pos))
+			{
+				m_deleted = true;
+				world.RemoveObject(alien);
+			}
+		}
 	}
 }

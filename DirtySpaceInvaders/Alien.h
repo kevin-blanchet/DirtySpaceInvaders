@@ -8,7 +8,7 @@ class Alien : public GameObject
 {
 public:
 	Alien();
-	~Alien() override;
+	~Alien() override = default;
 
 private:
 	float health = 1.f;

@@ -30,8 +30,10 @@ void PlayerShip::Update(PlayField& world)
 	if (world.controllerInput->Fire() && world.PlayerLasers > 0)
 	{
 		//Spawn laser
-		GameObject& newLaser = *(new PlayerLaser);
-		newLaser.pos = pos;
-		world.SpawnLaser(&newLaser);
+		GameObject* newLaser = new PlayerLaser;
+		if (newLaser) {
+			newLaser->pos = pos;
+			world.SpawnLaser(newLaser);
+		}
 	}
 }
