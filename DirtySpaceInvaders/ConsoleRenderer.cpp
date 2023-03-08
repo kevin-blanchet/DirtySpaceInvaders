@@ -5,6 +5,8 @@
 
 #include <Windows.h>
 
+#include "RaiderSprites.h"
+
 void setCursorPosition(int x, int y)
 {
 	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,6 +46,11 @@ void Renderer::Update(const RenderItemList& RenderList)
 	}
 
 	DrawCanvas();
+}
+
+unsigned char* Renderer::CurCanvas(int x, int y)
+{
+	return &disp[curIdx % 2].canvas[x + (int)renderBounds.x * y];
 }
 
 void Renderer::FillCanvas(unsigned char sprite)
