@@ -12,10 +12,6 @@ Alien::Alien(): GameObject()
 	sprite = RS_Alien;
 }
 
-Alien::~Alien()
-{
-}
-
 bool Alien::DecreaseHealth()
 {
 	health -= 1.f;
@@ -49,8 +45,10 @@ void Alien::Update(PlayField& world)
 	if (fireRate(rGen) < 0.05 && world.AlienLasers > 0)
 	{
 		//Spawn laser
-		GameObject& newLaser = *(new AlienLaser);
-		newLaser.pos = pos;
-		world.SpawnLaser(&newLaser);
+		GameObject* newLaser = new AlienLaser;
+		if (newLaser) {
+			newLaser->pos = pos;
+			world.SpawnLaser(newLaser);
+		}
 	}
 }
