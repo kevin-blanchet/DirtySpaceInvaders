@@ -10,7 +10,8 @@
 
 int main()
 {
-	rGen.seed(1);
+	std::random_device rd;
+	rGen.seed(rd());
 
 	Vector2D size(80, 28);
 	Renderer consoleRenderer(size);
@@ -24,7 +25,7 @@ int main()
 	{
 		Alien& a = *(new Alien);
 		a.pos.x = (float)xCoord(rGen);
-		a.pos.x = (float)yCoord(rGen);
+		a.pos.y = (float)yCoord(rGen);
 		world.AddObject(&a);
 	}
 
