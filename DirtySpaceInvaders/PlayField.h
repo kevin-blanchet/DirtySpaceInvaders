@@ -31,6 +31,8 @@ public:
 
 	GameObject* GetPlayerObject();
 
+	std::vector<GameObject*> GetAllAliens();
+
 	void SpawnLaser(GameObject* newObj);
 
 	void DespawnLaser(GameObject* newObj);

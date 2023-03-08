@@ -29,5 +29,5 @@ void Laser::Move(PlayField& world)
 
 void Laser::CollisionCheck(PlayField& world)
 {
-
+	// world.GetLasersObject();
 }

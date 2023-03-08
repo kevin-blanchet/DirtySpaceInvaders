@@ -24,4 +24,17 @@ void PlayerLaser::Move(PlayField& world)
 void PlayerLaser::CollisionCheck(PlayField& world)
 {
 	Laser::CollisionCheck(world);
+
+	std::vector<GameObject*> aliens = world.GetAllAliens();
+
+	if (!aliens.empty()) {
+		for (auto alien : aliens)
+		{
+			if (pos.IntCmp(alien->pos))
+			{
+				m_deleted = true;
+				world.RemoveObject(alien);
+			}
+		}
+	}
 }
