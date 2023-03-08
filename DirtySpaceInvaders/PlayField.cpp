@@ -41,7 +41,7 @@ void PlayField::Update()
 	{
 		CreateObject(it);
 	}
-	awaitingDeletion.clear();
+	awaitingAddition.clear();
 }
 
 GameObject* PlayField::GetPlayerObject()
@@ -59,7 +59,7 @@ GameObject* PlayField::GetPlayerObject()
 
 void PlayField::SpawnLaser(GameObject* newObj)
 {
-	if (strcmp(newObj->m_objType, "alienLaser") == 0)
+	if (strcmp(newObj->m_objType, "AlienLaser") == 0)
 	{
 		AlienLasers--;
 	}
