@@ -4,27 +4,16 @@
 
 #include "PlayField.h"
 
-PlayerLaser::PlayerLaser(): GameObject()
+PlayerLaser::PlayerLaser(): Laser()
 {
+	m_direction = -1.f;
 	strcpy(m_objType, "PlayerLaser");
 	sprite = RS_PlayerLaser;
 }
 
-PlayerLaser::~PlayerLaser()
-{
-}
-
 void PlayerLaser::Update(PlayField& world)
 {
-	bool deleted = false;
-	pos.y -= 1.f;
-	if (pos.y < 0)
-	{
-		deleted = true;
-	}
+	Laser::Move(world);
 
-	if (deleted)
-	{
-		world.DespawnLaser(this);
-	}
+	Laser::Update(world);
 }

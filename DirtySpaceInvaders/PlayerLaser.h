@@ -1,14 +1,14 @@
 #pragma once
 
-#include "GameObject.h"
+#include "Laser.h"
 
 class PlayField;
 
-class PlayerLaser : public GameObject
+class PlayerLaser : public Laser
 {
 public:
 	PlayerLaser();
-	~PlayerLaser() override;
+	~PlayerLaser() override = default;
 
 	void Update(PlayField& world) override;
 };
